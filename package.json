@@ -1,10 +1,13 @@
 {
   "name": "secure-coding-in-node-workshop",
   "version": "1.0.0",
+  "author": {
+    "name": "Chetan Karande"
+  },
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "test": "node client.js"
+    "lint": "./node_modules/.bin/eslint ."
   },
   "dependencies": {
     "qs": "^6.5.2",
