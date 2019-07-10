@@ -14,7 +14,7 @@ const activeClientIds = {
 };
 const isActiveClientId = (clientId) => {
     return activeClientIds[clientId] ? true : false; 
-}
+};
 
 // Verify that token matches
 const validToken = 'bigWombat';

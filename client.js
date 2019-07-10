@@ -2,8 +2,13 @@ var request = require('request');
 
 // Make a HTTP request to fetch a resouce
 function doGET() {
+    const api = 'api/v1/storage';
+    const sendCompressed = false;
+    const email = 'user@client.com';
+    const resource = 'hello.txt';
+
     request.get({
-        uri: `http://localhost:3600/api/v1/storage?sendCompressed=false&email=user@client.com&resource=hello.txt`,
+        uri: `http://localhost:3600/${api}?sendCompressed=${sendCompressed}&email=${email}&resource=${resource}`,
         headers: {
             'client_id': 'id_x',
             'token': 'bigWombat'
