@@ -29,18 +29,22 @@ const isValidEmail = (email) => {
 };
 
 const serveRequestedResource = async (req, res) => {
+    // Extract request query params 
+    req.params = qs.parse(req.urlParts.query);
+    const filename = req.params.filename;
+   
     // Verify that user has provided a filename of the resource to retrive
-    const filename = req.params.resource;
     if (filename == null || filename === '') {
         return terminate(res);
     }
-    // Confine path to serve files inside the restricted  public folder
-    let fullPath = path.join(__dirname, 'public', filename);
+
+    // Confine path to serve files inside the resources folder
+    let fullPath = path.join(__dirname, 'resources', filename);
 
     // Wrap try/catch to handle any synchronous errors and any promise reject in await functions
     try {
         // Check if user needs response in compressed format
-        const sendCompressed = eval(req.params.sendCompressed);
+        const sendCompressed = eval(req.params.compressed);
         // If compressed file requested, defalte (gzip) the requested file
         if (sendCompressed === true) {
             await compressFile(fullPath);
@@ -80,13 +84,13 @@ const terminate = (res) => {
 
 // Handle get requests to the HTTP endpoint
 exports.get = (req, res) => {
-    // Parse the user inputs in the request query params and headers
-    req.params = qs.parse(req.urlParts.query);
-    const email = req.params.email;
-    const client_id = req.headers.client_id;
-    const token = req.headers.token;
-    // Validate the user inputs. If invalid, retun error response
-    if (!isActiveClientId(client_id) || !isValidEmail(email) || !isValidToken(token)) {
+    // Extract request headers
+    const email     = req.headers.email;
+    const clientId = req.headers.clientid;
+    const token     = req.headers.token;
+
+    // Validate request headers. If invalid, retun error response
+    if (!isValidEmail(email) || !isActiveClientId(clientId) || !isValidToken(token)) {
         return terminate(res);
     }
     // Serve requested resource the user

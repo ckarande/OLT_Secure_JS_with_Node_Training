@@ -13,7 +13,7 @@ http.createServer(function (req, res) {
 
     // Verify the requested endpoint is valid
     req.urlParts = url.parse(req.url);
-    if (req.urlParts.pathname !== '/api/v1/storage') {
+    if (req.urlParts.pathname !== '/api/resource') {
         // If invalid endpoint, terminate the request
         return notFound(req, res);
     } else {

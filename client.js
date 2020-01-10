@@ -2,15 +2,16 @@ var request = require('request');
 
 // Make a HTTP request to fetch a resouce
 function doGET() {
-    const api = 'api/v1/storage';
-    const sendCompressed = false;
-    const email = 'user@client.com';
-    const resource = 'hello.txt';
-
+    const api = 'api/resource';
+    const filename = 'hello.txt';
+    const compressed = false;
+    
+    // Send a HTTP GET request with required params and headers
     request.get({
-        uri: `http://localhost:3600/${api}?sendCompressed=${sendCompressed}&email=${email}&resource=${resource}`,
+        uri: `http://localhost:3600/${api}?filename=${filename}&compressed=${compressed}`,
         headers: {
-            'client_id': 'id_x',
+            'email': 'user@client.com',
+            'clientid': 'id_x',
             'token': 'bigWombat'
         }
     }, function (err, res) {
