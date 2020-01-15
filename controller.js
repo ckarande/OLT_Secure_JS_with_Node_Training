@@ -85,9 +85,9 @@ const terminate = (res) => {
 // Handle get requests to the HTTP endpoint
 exports.get = (req, res) => {
     // Extract request headers
-    const email     = req.headers.email;
-    const clientId = req.headers.clientid;
-    const token     = req.headers.token;
+    const email     = req.headers.auth_email;
+    const clientId = req.headers.auth_client_id;
+    const token     = req.headers.auth_token;
 
     // Validate request headers. If invalid, retun error response
     if (!isValidEmail(email) || !isActiveClientId(clientId) || !isValidToken(token)) {

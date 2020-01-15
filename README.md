@@ -6,6 +6,9 @@
 
 This lab includes code for a simple web server with a single endpoint `/api/resource` that serves files requested by a client from the `resources` folder. It also allows a client to request a file in the compressed gzip format.
 
+![Architecture Overview](./architecture_diagram.png)
+
+
 We need a second set of eyes to review the code and spot any security issues. Put on your hacker thinking hat and discover as many vulnerabilities as you can in the **controller.js**.
 
 **Setup**
@@ -32,9 +35,9 @@ Following are the input values a client request can send to the server -
 *Request Headers*
 
 In addition, a request takes these HTTP headers:
-* `email`: (Required) Any value in a valid email format, such as: user@client.com
-* `clientid`: (Required) The only active client ids are `id_x`, `id-y`, and `id-z`. Server is expected to send file only if the client id header matches to one of these.
-* `token`: (Required) A valid token value is `bigWombat`.
+* `auth_email`: (Required) Any value in a valid email format, such as: user@client.com
+* `auth_client_id`: (Required) The only active client ids are `id_x`, `id-y`, and `id-z`. Server is expected to send file only if the client id header matches to one of these.
+* `auth_token`: (Required) A valid token value is `bigWombat`.
 
 *Example of a Request*
 
@@ -49,9 +52,9 @@ function doGET() {
     request.get({
         uri: 'http://localhost:3500/api/resource?filename=hello.txt&compressed=true',
         headers: {
-            'email': 'user@client.com'
-            'clientid': 'id_x',
-            'token': 'bigWombat'
+            'auth_email': 'user@client.com'
+            'auth_client_id': 'id_x',
+            'auth_token': 'bigWombat'
         }
     }, function (err, res) {
         console.log(res.body);

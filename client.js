@@ -10,9 +10,9 @@ function doGET() {
     request.get({
         uri: `http://localhost:3600/${api}?filename=${filename}&compressed=${compressed}`,
         headers: {
-            'email': 'user@client.com',
-            'clientid': 'id_x',
-            'token': 'bigWombat'
+            'auth_email': 'user@client.com',
+            'auth_client_id': 'id_x',
+            'auth_token': 'bigWombat'
         }
     }, function (err, res) {
         if (err) console.log(res.body);
