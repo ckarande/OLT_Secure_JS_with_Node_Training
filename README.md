@@ -36,7 +36,7 @@ Following are the input values a client request can send to the server -
 
 In addition, a request takes these HTTP headers:
 * `auth_email`: (Required) Any value in a valid email format, such as: user@client.com
-* `auth_client_id`: (Required) The only active client ids are `id_x`, `id-y`, and `id-z`. Server is expected to send file only if the client id header matches to one of these.
+* `auth_client_id`: (Required) The only active client ids are `id_x`, `id_y`, and `id_z`. Server is expected to send file only if the client id header matches to one of these.
 * `auth_token`: (Required) A valid token value is `bigWombat`.
 
 *Example of a Request*
@@ -65,3 +65,4 @@ doGET();
 ```
 
 Feel free to change request params and headers in `client.js` to any other values to test the server output.
+
