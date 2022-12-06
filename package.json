@@ -10,7 +10,7 @@
     "lint": "./node_modules/.bin/eslint ."
   },
   "dependencies": {
-    "qs": "^6.5.2",
+    "qs": "^6.7.3",
     "request": "^2.88.0"
   },
   "devDependencies": {
